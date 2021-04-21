@@ -1,0 +1,41 @@
+@import url('http://fonts.cdnfonts.com/css/gilroy-bold');
+*{
+  font-family:'Gilroy-Bold', sans-serif;
+}
+body{
+  background-color: #08373e;
+}
+.btn-primary{
+  border-radius: 0%;
+  transition: width 2s, height 2s, background-color 2s, transform 2s;
+  background-color: #17a2b8;
+  border-color:#0000;
+  color: #FFFFFF;
+  width: 500px;
+  height: 200px;
+  font-size: 24pt;
+  margin: 50px;
+  box-shadow: 7px 7px 0px #0000004b;
+  border-radius: 10px;
+}
+
+.btn-primary:hover{
+  -webkit-transform: scale(0.9);
+  -ms-transform: scale(0.9);
+  transform: scale(0.9);
+  transition: all 1.0s ease;
+  background-color: #17a2b8;
+  box-shadow: 7px 7px 0px #0000004b;
+}
+
+.knopki{
+  position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+    user-select: none;
+}
+h1{
+  color: #FFFFFF;
+}

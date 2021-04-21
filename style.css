@@ -1,0 +1,50 @@
+@import url('http://fonts.cdnfonts.com/css/gilroy-bold');
+*{
+  font-family:'Gilroy-Bold', sans-serif;
+}
+.square{
+    width: 400px;
+    background-color: #17a2b8;
+    margin: 0 auto;
+    margin-top: 14%;
+    border-radius: 10px;
+    box-shadow: 7px 7px 0px #0000004b;
+
+}
+body{
+    background-color:#08373e;
+}
+
+.form-group{
+    margin-top: 20px;
+    font-size: 20px;
+
+}
+.roditel{
+    padding: 15px;
+    display: grid;
+}
+.roditel button {
+    background-color:#08373e;
+    box-shadow: 7px 7px 0px #00000059;
+}
+
+.form-control {
+    box-shadow: 7px 7px 0px #0000004b;
+}
+@font-face {
+    font-family: Pompadur; /* Гарнитура шрифта */
+    src: url(fonts/pompadur.ttf);
+}
+.btn-primary{
+  border-color:#0000;
+  font-size: 20px;
+}
+.btn-primary:hover{
+  background-color:#08373e;
+  border-color:#0000;
+  -webkit-transform: scale(0.9);
+  -ms-transform: scale(0.9);
+  transform: scale(0.9);
+  transition: all 1.0s ease;
+}

@@ -1,0 +1,100 @@
+body {
+  background-color: #1e2225;
+}
+
+.btn-secondary {
+  width: 150px;
+}
+
+#okno {
+  width: 80%;
+  height: 70vh;
+  margin: 0 auto;
+  margin-top: calc(10vh + 10px);
+  background-color: #3E444A;
+  box-shadow: 10px 10px 0px #0000004b;
+  border-radius: 10px;
+}
+
+.name {
+  text-align: center;
+  color: #FFF;
+  /* font-size: 50px; */
+}
+
+.kvadrat {
+  background-color: #343A40;
+  margin-top: 7px;
+  padding: 5px;
+  border-radius: 5px;
+  color: #FFF;
+  font-size: 13pt;
+  border: 1px solid #454d55;
+}
+
+.name {
+  background-color: #343A40;
+  border-radius: 10px;
+  border: 1px solid #454d55;
+  margin: 10%;
+  margin-top: 3%;
+  margin-bottom: 0;
+}
+
+.text {
+  height: 60%;
+  width: auto;
+  margin-right: 5%;
+  margin-left: 5%;
+  margin-top: 1%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  color: #FFF;
+}
+
+.scroll-table-body {
+  height: calc(70vh - 84px);
+  overflow-x: auto;
+  border-radius: 0 0 10px 5px;
+}
+
+.scroll-table table {
+  width: 100%;
+  table-layout: fixed;
+  border: none;
+}
+
+.scroll-table thead th {
+  font-weight: bold;
+  text-align: left;
+  border: none;
+  padding: 10px 15px;
+}
+
+.scroll-table tbody td {
+  text-align: left;
+  padding: 10px 15px;
+  font-size: 14px;
+  vertical-align: top;
+}
+
+.scroll-table-body::-webkit-scrollbar {
+  width: 0;
+}
+
+.table {
+  margin: 0;
+}
+
+.tittle_param {
+  font-size: 30px;
+}
+
+.bk {
+  top: calc(100% - 38px);
+  position: absolute;
+}
+.nav-link{
+  color:#FFF;
+}
