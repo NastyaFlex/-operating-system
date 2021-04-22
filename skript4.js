@@ -8,15 +8,13 @@ papaya.onload = function(){
     console.log(papaya.status + " Ошибка");
   } else{
     let jsontext = papaya.response;
-    console.log(jsontext);
     let arrVMs = JSON.parse(jsontext);
-    console.log(arrVMs);
 
     let car = document.getElementById("car");
-    console.log(car);
 
      for(let i in arrVMs){
-       console.log(i);
+       let mashina = arrVMs[i];
+       car.insertAdjacentHTML("beforeend",`<li class="dropdown-item">${mashina.params.nameVM}</li>`)
      }
 
   }
