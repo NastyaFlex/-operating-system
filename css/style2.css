@@ -1,11 +1,10 @@
 @import url('http://fonts.cdnfonts.com/css/gilroy-bold');
 *{
-  font-family:'Gilroy-Bold', sans-serif;
+  font-family: Courer New;
 }
 body{
-    background-color:#08373e;
+    background-color:#1e2225;
     display: block;
-    font-family:'Gilroy-Bold', sans-serif;
 }
 
 body, html{
@@ -16,7 +15,7 @@ body, html{
   width: 600px;
   height: fit-content;
   padding: 30px;
-  background-color:#17a2b8;
+  background-color:#454d55;
   margin: auto;
   border-radius: 10px;
   box-shadow: 10px 10px 0px #0000004b;
@@ -39,7 +38,7 @@ h1{
 @media(max-width: 1000px){
   .square{
     width: 700px;
-    background-color:#17a2b8;
+    background-color:#454d55;
     margin-left: auto;
     margin-right: auto;
     margin-top: 10%;
@@ -62,7 +61,7 @@ h1{
 }
 .btn-primary{
   box-shadow: 7px 7px 0px #0000004b;
-  background-color: #17a2b8;
+  background-color: #454d55;
 }
 .button1{
   text-align: center;
@@ -85,7 +84,7 @@ h1{
   width: 100%;
 }
 h2{
- font-weight: bold;
+ font-size: 30px;
 }
 #creek{
   margin-bottom: 30px;
@@ -95,7 +94,7 @@ h2{
 .dt {
   margin: 10px;
   display: flex;
-  background: #17a2b8;
+  background: #454d55;
   /* background: #edb100; */
   padding: 10px;
   border-radius: 10px;
@@ -119,7 +118,7 @@ h2{
   margin-top: 5px;
   margin-bottom: 5px;
   margin-left: 0;
-  background: #17a2b8;
+  background: #454d55;
   /* background: #edb100; */
   padding: 10px;
   border-radius: 10px;
@@ -129,11 +128,14 @@ h3{
   color: #FFFFFF;
 }
 #knopka{
-  background: #17a2b8;
+  background: #454d55;
   vertical-align: middle;
   font-size: 20px;
   margin-bottom: 1%;
   margin-left: 1%;
   width: 200px;
   height: 50px;
+}
+.title_css{
+  color: #FFF;
 }

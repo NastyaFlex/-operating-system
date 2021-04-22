@@ -1,5 +1,7 @@
 body {
   background-color: #1e2225;
+  font-family: Courer New;
+  /* font-size: 20px; */
 }
 
 .btn-secondary {
@@ -7,7 +9,7 @@ body {
 }
 
 #okno {
-  width: 80%;
+  width: 75%;
   height: 70vh;
   margin: 0 auto;
   margin-top: calc(10vh + 10px);
@@ -19,7 +21,6 @@ body {
 .name {
   text-align: center;
   color: #FFF;
-  /* font-size: 50px; */
 }
 
 .kvadrat {
@@ -28,11 +29,12 @@ body {
   padding: 5px;
   border-radius: 5px;
   color: #FFF;
-  font-size: 13pt;
+  font-size: 15pt;
   border: 1px solid #454d55;
 }
 
 .name {
+  font-size: 15pt;
   background-color: #343A40;
   border-radius: 10px;
   border: 1px solid #454d55;
@@ -92,9 +94,11 @@ body {
 }
 
 .bk {
-  top: calc(100% - 38px);
+  top: calc(100% - 45px);
   position: absolute;
+  font-size: 12pt;
 }
 .nav-link{
   color:#FFF;
+  font-size: 15pt;
 }

@@ -140,16 +140,6 @@ background-color: #FFF;
 .square .mashina {
   margin: auto;
 }
-
-.name{
-  height: 50px;
-  width: 90%;
-  background-color: #343A40;
-  border-radius: 10px;
-  margin-left: 5%;
-  margin-top: 3%;
-      border: 1px solid #454d55;
-}
 .text {
   height: 70%;
   width: auto;
@@ -172,7 +162,7 @@ background-color: #FFF;
 .name{
   text-align: center;
   color: #FFF;
-  /* font-size: 50px; */
+  font-size: 30px;
 }
 .kvadrat{
   background-color: #343A40;
