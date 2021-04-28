@@ -103,10 +103,18 @@ body {
   font-size: 15pt;
 }
 .kr{
-  width: 10%;
+  width: 10px;
 }
 
 .sm {
   display: flex;
   justify-content: space-between;
+}
+
+.sm span{
+  margin-right: 10px;
+}
+
+#car{
+  width: max-content;
 }

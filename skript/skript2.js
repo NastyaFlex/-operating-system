@@ -1,5 +1,5 @@
 let tweek = new XMLHttpRequest();
-tweek.open('GET', `http://10.3.0.81:10005/params?token=${localStorage.getItem("chef")}`);  
+tweek.open('GET', `http://10.3.0.81:10005/params?token=${localStorage.getItem("chef")}`);
 // tweek.open('GET',"http://25.46.45.114:10000/reg");
 tweek.send();
 
@@ -20,6 +20,7 @@ tweek.onload = function() {
         let stan = document.createElement("input");
         stan.className = "form-control";
         stan.name = name;
+        stan.setAttribute("maxlength","16");
         craig.append(stan);
       }
       if (rendi.type == 'kenny') {
