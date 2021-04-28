@@ -10,12 +10,12 @@ body {
 
 #okno {
   width: 75%;
-  height: 70vh;
   margin: 0 auto;
-  margin-top: calc(10vh + 10px);
+  margin-top: calc(3vh + 3px);
   background-color: #3E444A;
   box-shadow: 10px 10px 0px #0000004b;
   border-radius: 10px;
+  padding: 1%;
 }
 
 .name {
@@ -101,4 +101,12 @@ body {
 .nav-link{
   color:#FFF;
   font-size: 15pt;
+}
+.kr{
+  width: 10%;
+}
+
+.sm {
+  display: flex;
+  justify-content: space-between;
 }
