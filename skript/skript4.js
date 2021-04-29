@@ -15,16 +15,16 @@ papaya.onload = function(){
      for(let i in arrVMs){
        let mashina = arrVMs[i];
        console.log(mashina);
-       car.insertAdjacentHTML("beforeend",`<li class="dropdown-item sm"><span>${mashina.params.nameVM}</span><img src="../res/krestik.svg" class="kr"></li>`)
+       car.insertAdjacentHTML("beforeend",`<li class="dropdown-item sm"><span>${mashina.params.nameVM[1]}</span><img src="../res/play.svg" class="kr"><img src="../res/krestik.svg" class="kr"></li>`)
 
        let home = document.getElementById("home");
        let characteristic = document.createElement('div');
        characteristic.style.display = "none";
        characteristic.setAttribute("id","vm"+i);
-
+       characteristic.setAttribute("class","content_vm");
        characteristic.insertAdjacentHTML("afterbegin", `
        <div class="name">
-         <h1>${mashina.params.nameVM}</h1>
+         <h1>${mashina.params.nameVM[1]}</h1>
        </div>
        `);
        delete mashina.params.nameVM;
@@ -35,8 +35,8 @@ papaya.onload = function(){
          text.insertAdjacentHTML(
            "beforeend",
             `<div>
-             <div class="tittle_param">${key}</div>
-             <div class="kvadrat">${mashina.params[key]}</div>
+             <div class="tittle_param">${mashina.params[key][0]}</div>
+             <div class="kvadrat">${mashina.params[key][1]}</div>
            </div>`
          );
        }
