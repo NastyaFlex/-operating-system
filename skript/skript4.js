@@ -1,6 +1,6 @@
 let characteristics = [];
 let papaya = new XMLHttpRequest();
-papaya.open('GET',`http://10.3.0.81:10005/listVMs?token=${localStorage.getItem("chef")}`);
+papaya.open('GET',`http://25.46.45.114:10005/listVMs?token=${localStorage.getItem("chef")}`);
 papaya.send();//отправляем запрос на сервер
 
 // Этот код сработает после того, как мы получим ответ сервера
@@ -15,7 +15,7 @@ papaya.onload = function(){
      for(let i in arrVMs){
        let mashina = arrVMs[i];
        console.log(mashina);
-       car.insertAdjacentHTML("beforeend",`<li class="dropdown-item sm"><span>${mashina.params.nameVM[1]}</span><img src="../res/play.svg" class="kr"><img src="../res/krestik.svg" class="kr"></li>`)
+       car.insertAdjacentHTML("beforeend",`<li class="dropdown-item sm">${mashina.params.nameVM[1]}</li>`)
 
        let home = document.getElementById("home");
        let characteristic = document.createElement('div');
@@ -47,6 +47,19 @@ papaya.onload = function(){
 
        document.getElementById("vm0").style.display = "";
        console.log(characteristic);
+
+       if(mashina.params.status[1] == "running"){
+         let turn_on = document.getElementById('turn_on');
+         turn_on.classList.add("hide");
+         let turn_off = document.getElementById('turn_off');
+         turn_off.classList.remove("hide");
+       }
+       if(mashina.params.status[1] == "shutdovn"){
+         let turn_off = document.getElementById('turn_off');
+         turn_off.classList.add("hide");
+         let turn_on = document.getElementById('turn_on');
+         turn_on.classList.remove("hide");
+       }
      }
   }
 }

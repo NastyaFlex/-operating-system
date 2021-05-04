@@ -11,6 +11,23 @@
 </head>
 
 <body>
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title color_fff" id="exampleModalLabel">Удалить</h5>
+        </div>
+        <div class="modal-body color_fff">
+          Вы действильно хотите удалить?
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary wi" data-bs-dismiss="modal">Нет</button>
+          <button type="button" class="btn btn-primary">Да</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <div class="btn-group">
     <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
       Список
@@ -19,7 +36,8 @@
     </ul>
   </div>
   <div class="" id="okno">
-    <ul class="nav nav-tabs" id="myTab" role="tablist">
+    <ul class="nav nav-tabs" id="myTab">
+
       <li class="nav-item" role="presentation">
         <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true">Характеристики</button>
       </li>
@@ -29,7 +47,15 @@
       <li class="nav-item" role="presentation">
         <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact" type="button" role="tab" aria-controls="contact" aria-selected="false">Новый диск</button>
       </li>
+      <button type="button" class="btn btn-dark two_buttons" data-bs-toggle="modal" data-bs-target="#exampleModal">Удалить</button>
+      <button type="button" class="btn btn-dark vkl" id="turn_on">Вкл.</button>
+      <button type="button" class="btn btn-dark vkl2 hide" id="turn_off">Выкл.</button>
     </ul>
+
+
+    <div class="two_buttons">
+
+    </div>
 
     <div class="tab-content" id="myTabContent">
       <div class="tab-pane fade show active scroll" id="home" role="tabpanel" aria-labelledby="home-tab">

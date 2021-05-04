@@ -76,7 +76,6 @@ body {
   vertical-align: top;
 }
 
-
 .table {
   margin: 0;
 }
@@ -95,7 +94,7 @@ body {
   border-radius: 0 0 10px 5px;
 }
 
-.content_vm{
+.content_vm {
   margin: 20px;
 }
 
@@ -104,11 +103,13 @@ body {
   position: absolute;
   font-size: 12pt;
 }
-.nav-link{
-  color:#FFF;
+
+.nav-link {
+  color: #FFF;
   font-size: 15pt;
 }
-.kr{
+
+.kr {
   width: 10px;
 }
 
@@ -117,10 +118,50 @@ body {
   justify-content: space-between;
 }
 
-.sm span{
+.sm span {
   margin-right: 10px;
 }
 
-#car{
+#car {
   width: max-content;
+}
+
+.two_buttons {
+  margin-left: auto;
+  background-color: #212529;
+}
+
+.vkl {
+  border-color: red;
+}
+
+.modal-content {
+  background-color: #1e2225;
+}
+
+.color_fff {
+  color: #fff;
+}
+
+.btn-primary {
+  color: #fff;
+  background-color: #6c757d;
+  border-color: #6c757d;
+}
+
+.vkl2 {
+  border-color: green;
+}
+
+.hide {
+  display: none;
+}
+
+.btn-primary:hover {
+  background-color: #454d55;
+  border-color: #454d55;
+}
+
+.wi {
+  width: auto;
 }
