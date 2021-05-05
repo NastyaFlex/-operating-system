@@ -12,14 +12,13 @@ body, html{
 }
 
 .square{
-  width: 600px;
-  height: fit-content;
+  width: 50%;
   padding: 30px;
   background-color:#454d55;
   margin: auto;
   border-radius: 10px;
   box-shadow: 10px 10px 0px #0000004b;
-  display: flex;
+  flex-direction: column;
   position: absolute;
   top: 50%;
   left: 50%;
@@ -35,7 +34,7 @@ h1{
     text-align: center;
 }
 
-@media(max-width: 1000px){
+/* @media(max-width: 1000px){
   .square{
     width: 700px;
     background-color:#454d55;
@@ -43,24 +42,9 @@ h1{
     margin-right: auto;
     margin-top: 10%;
   }
-}
+} */
 
-.square2{
-  width: 500px;
-  border: 3px solid #fff;
-  border-radius: 10px;
-  margin: auto;
-  top:auto;
-}
-
-.form-control{
-  box-shadow: 7px 7px 0px #0000004b;
-}
-.form-select{
-  box-shadow: 7px 7px 0px #0000004b;
-}
 .btn-primary{
-  box-shadow: 7px 7px 0px #0000004b;
   background-color: #454d55;
 }
 .button1{
@@ -138,4 +122,12 @@ h3{
 }
 .title_css{
   color: #FFF;
+}
+.name {
+  background-color: #343A40;
+  border-radius: 10px;
+  border: 1px solid #454d55;
+  margin: 15%;
+  margin-top: 1%;
+  margin-bottom: 0;
 }

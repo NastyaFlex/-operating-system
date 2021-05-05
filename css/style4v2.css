@@ -9,9 +9,12 @@ body {
 }
 
 #okno {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-right: -50%;
+  transform: translate(-50%, -50%);
   width: 70%;
-  margin: 0 auto;
-  margin-top: calc(7vh + 8px);
   background-color: #3E444A;
   box-shadow: 10px 10px 0px #0000004b;
   border-radius: 10px;
@@ -54,6 +57,7 @@ body {
 .scroll-table-body {
   height: 100%;
   overflow-x: auto;
+  border-radius: 0 0 15px 15px;
 }
 
 .scroll-table table {
@@ -100,6 +104,7 @@ body {
 
 .bk {
   top: calc(100% - 45px);
+  left: 0;
   position: absolute;
   font-size: 12pt;
 }
@@ -162,6 +167,38 @@ body {
   border-color: #454d55;
 }
 
-.wi {
-  width: auto;
+.cursor {
+  cursor: pointer;
+  width: 10px;
+}
+
+.col {
+  color: #fff;
+}
+
+.mouse_sneaking {
+  color: #ffffff33;
+  font-size: 42pt;
+  text-align: center;
+}
+
+.kn {
+  border-radius: 0%;
+  transition: width 2s, height 2s, background-color 2s, transform 2s;
+  background-color: #454d55;
+  border-color: #0000;
+  color: #FFFFFF;
+  width: 500px;
+  height: 200px;
+  font-size: 24pt;
+  margin: 50px;
+  box-shadow: 7px 7px 0px #0000004b;
+  border-radius: 10px;
+}
+
+#carEmpty {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }

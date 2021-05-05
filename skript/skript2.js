@@ -1,5 +1,5 @@
 let tweek = new XMLHttpRequest();
-tweek.open('GET', `http://25.46.45.114:10005/params?token=${localStorage.getItem("chef")}`);
+tweek.open('GET', `http://10.3.0.81:10005/params?token=${localStorage.getItem("chef")}`);
 // tweek.open('GET',"http://25.46.45.114:10000/reg");
 tweek.send();
 
@@ -63,7 +63,7 @@ function submitForm(event) {
     console.log(obj);
     let json = JSON.stringify(obj);
     let tweek = new XMLHttpRequest();
-    tweek.open('POST', `http://25.46.45.114:10005/create-vm?chef=${localStorage.getItem("chef")}`);
+    tweek.open('POST', `http://10.3.0.81:10005/create-vm?chef=${localStorage.getItem("chef")}`);
     tweek.send(json);
     let myNode = document.getElementsByClassName('kaka2')[0];
     myNode.innerHTML = '';
