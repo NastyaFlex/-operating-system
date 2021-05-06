@@ -56,10 +56,6 @@ h1{
   background-color: #08373e;
   border-color:#0000;
 }
-.btn-primary:hover{
-  background-color:#08373e;
-  border-color:#0000;
-}
 .kaka{
   margin: 10px;
 }
@@ -130,4 +126,11 @@ h3{
   margin: 15%;
   margin-top: 1%;
   margin-bottom: 0;
+}
+.come_back{
+  top: calc(100% - 50px);
+  left: 0;
+  cursor: pointer;
+  position: absolute;
+  font-size: 12pt;
 }

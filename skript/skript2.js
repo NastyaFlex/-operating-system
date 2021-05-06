@@ -1,5 +1,8 @@
+let loading = new bootstrap.Modal(document.getElementById('loading'), {
+  backdrop: "static"
+});
 let tweek = new XMLHttpRequest();
-tweek.open('GET', `http://10.3.0.81:10005/params?token=${localStorage.getItem("chef")}`);
+tweek.open('GET', `http://10.3.0.13:10005/params?token=${localStorage.getItem("chef")}`);
 // tweek.open('GET',"http://25.46.45.114:10000/reg");
 tweek.send();
 
@@ -20,6 +23,7 @@ tweek.onload = function() {
         let stan = document.createElement("input");
         stan.className = "form-control";
         stan.name = name;
+        stan.placeholder = rendi.placeholder;
         stan.setAttribute("maxlength","16");
         craig.append(stan);
       }
@@ -53,7 +57,7 @@ function submitForm(event) {
   let a = false;
   formData.forEach((value, key) => {
     if (value == "") {
-      alert("Вы кое-что забыли)")
+      alert("Вы кое-что забыли")
       a = true;
     };
     obj[key] = value
@@ -63,12 +67,14 @@ function submitForm(event) {
     console.log(obj);
     let json = JSON.stringify(obj);
     let tweek = new XMLHttpRequest();
-    tweek.open('POST', `http://10.3.0.81:10005/create-vm?chef=${localStorage.getItem("chef")}`);
+    tweek.open('POST', `http://10.3.0.13:10005/createVM?token=${localStorage.getItem("chef")}`);
     tweek.send(json);
-    let myNode = document.getElementsByClassName('kaka2')[0];
-    myNode.innerHTML = '';
-    document.getElementById("ded").innerHTML = "Данные для входа";
+    loading.show();
     tweek.onload = function() {
+      let myNode = document.getElementsByClassName('kaka2')[0];
+      myNode.innerHTML = '';
+      document.getElementById("ded").innerHTML = "Данные для входа";
+
       let timmi = JSON.parse(tweek.responseText);
 
       let bunniOne = document.createElement("div");
@@ -92,6 +98,7 @@ function submitForm(event) {
       bunniOne1.append(bunni1);
       bunniOne1.append(bunniTwo1);
       myNode.append(bunniOne1);
+      loading.hide();
     }
 
   }

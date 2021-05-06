@@ -102,13 +102,6 @@ body {
   margin: 20px;
 }
 
-.bk {
-  top: calc(100% - 45px);
-  left: 0;
-  position: absolute;
-  font-size: 12pt;
-}
-
 .nav-link {
   color: #FFF;
   font-size: 15pt;
@@ -196,9 +189,26 @@ body {
   border-radius: 10px;
 }
 
-#carEmpty {
+#carEmpty div {
   height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
+}
+.vm{
+  width: 650px;
+  height: 30px;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 25px;
+}
+.arrow{
+  top: calc(100% - 50px);
+  left: 0;
+  cursor: pointer;
+  position: absolute;
+  font-size: 12pt;
 }
