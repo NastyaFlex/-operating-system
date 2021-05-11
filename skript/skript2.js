@@ -1,11 +1,12 @@
 let loading = new bootstrap.Modal(document.getElementById('loading'), {
   backdrop: "static"
 });
+let empty_in = new bootstrap.Modal(document.getElementById('empty_in'));
+let empty_in1 = new bootstrap.Modal(document.getElementById('empty_in1'));
 let tweek = new XMLHttpRequest();
 tweek.open('GET', `http://10.3.0.13:10005/params?token=${localStorage.getItem("chef")}`);
 // tweek.open('GET',"http://25.46.45.114:10000/reg");
 tweek.send();
-
 tweek.onload = function() {
   if (tweek.status === 200) {
     let square = document.getElementsByClassName('glav')[0];
@@ -57,51 +58,56 @@ function submitForm(event) {
   let a = false;
   formData.forEach((value, key) => {
     if (value == "") {
-      alert("Вы кое-что забыли")
+      empty_in.show();
       a = true;
     };
     obj[key] = value
   });
+  if (a) { return; }
 
-  if (!a) {
-    console.log(obj);
-    let json = JSON.stringify(obj);
-    let tweek = new XMLHttpRequest();
-    tweek.open('POST', `http://10.3.0.13:10005/createVM?token=${localStorage.getItem("chef")}`);
-    tweek.send(json);
-    loading.show();
-    tweek.onload = function() {
-      let myNode = document.getElementsByClassName('kaka2')[0];
-      myNode.innerHTML = '';
-      document.getElementById("ded").innerHTML = "Данные для входа";
-
-      let timmi = JSON.parse(tweek.responseText);
-
-      let bunniOne = document.createElement("div");
-      bunniOne.className = 'dt';
-      let bunni = document.createElement("h2");
-      bunni.innerHTML = "ip:";
-      let bunniTwo = document.createElement("h2");
-      bunniTwo.className = "ta";
-      bunniTwo.innerHTML = timmi.ip;
-      bunniOne.append(bunni);
-      bunniOne.append(bunniTwo);
-      myNode.append(bunniOne);
-
-      let bunniOne1 = document.createElement("div");
-      bunniOne1.className = 'dt';
-      let bunni1 = document.createElement("h2");
-      bunni1.innerHTML = "Порт:";
-      let bunniTwo1 = document.createElement("h2");
-      bunniTwo1.className = "ta";
-      bunniTwo1.innerHTML = timmi.port;
-      bunniOne1.append(bunni1);
-      bunniOne1.append(bunniTwo1);
-      myNode.append(bunniOne1);
-      loading.hide();
-    }
-
+  let validRegEx = /[A-Za-z0-9]/
+  if (obj.nameVM.match(validRegEx) == null){
+    empty_in1.show();
+    return;
   }
+
+  console.log(obj);
+  let json = JSON.stringify(obj);
+  let tweek = new XMLHttpRequest();
+  tweek.open('POST', `http://10.3.0.13:10005/createVM?token=${localStorage.getItem("chef")}`);
+  tweek.send(json);
+  loading.show();
+  tweek.onload = function() {
+    let myNode = document.getElementsByClassName('kaka2')[0];
+    myNode.innerHTML = '';
+    document.getElementById("ded").innerHTML = "Данные для входа";
+
+    let timmi = JSON.parse(tweek.responseText);
+
+    let bunniOne = document.createElement("div");
+    bunniOne.className = 'dt';
+    let bunni = document.createElement("h2");
+    bunni.innerHTML = "ip:";
+    let bunniTwo = document.createElement("h2");
+    bunniTwo.className = "ta";
+    bunniTwo.innerHTML = timmi.ip;
+    bunniOne.append(bunni);
+    bunniOne.append(bunniTwo);
+    myNode.append(bunniOne);
+
+    let bunniOne1 = document.createElement("div");
+    bunniOne1.className = 'dt';
+    let bunni1 = document.createElement("h2");
+    bunni1.innerHTML = "Порт:";
+    let bunniTwo1 = document.createElement("h2");
+    bunniTwo1.className = "ta";
+    bunniTwo1.innerHTML = timmi.port;
+    bunniOne1.append(bunni1);
+    bunniOne1.append(bunniTwo1);
+    myNode.append(bunniOne1);
+    loading.hide();
+  }
+
 }
 function creat(){
   document.location.href = "index3.html";

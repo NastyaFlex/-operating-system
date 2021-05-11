@@ -29,7 +29,7 @@ function list_vm() {
       for (let i in arrVMs) {
         let mashina = arrVMs[i];
         console.log(mashina);
-        car.insertAdjacentHTML("beforeend", `<li class="dropdown-item sm">${mashina.name}</li>`)
+        car.insertAdjacentHTML("beforeend", `<li class="dropdown-item sm" onclick="switch_car('${mashina.id}')">${mashina.name}</li>`)
 
         let container = document.getElementById("container");
         let characteristic = document.createElement('div');
@@ -87,7 +87,7 @@ function list_vm() {
 function delete_car() {
   papaya.open('GET', `http://10.3.0.13:10005/removeVM?token=${localStorage.getItem("chef")}&vmID=${id_car}`);
   papaya.send();
-loading.show();
+  loading.show();
 
   papaya.onload = function() {
     if (papaya.status == 200) {
@@ -111,6 +111,12 @@ function toggle_car(toggle) {
       document.getElementById("status").innerHTML = papaya.response;
     }
   }
+}
+
+function switch_car(id) {
+  document.getElementById(id).style.display = "";
+  document.getElementById(id_car).style.display = "none";
+  id_car = id;
 }
 
 function vm() {

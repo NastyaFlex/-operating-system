@@ -1,20 +1,22 @@
 @import url('http://fonts.cdnfonts.com/css/gilroy-bold');
-*{
+
+* {
   font-family: Courer New;
 }
-body{
-    background-color:#1e2225;
-    display: block;
+
+body {
+  background-color: #1e2225;
+  display: block;
 }
 
-body, html{
+body, html {
   height: 100%;
 }
 
-.square{
+.square {
   width: 50%;
   padding: 30px;
-  background-color:#454d55;
+  background-color: #454d55;
   margin: auto;
   border-radius: 10px;
   box-shadow: 10px 10px 0px #0000004b;
@@ -26,49 +28,44 @@ body, html{
   transform: translate(-50%, -50%)
 }
 
-h1{
+h1 {
   color: #FFFFFF;
-    margin: auto;
-    padding-top: 2%;
-    margin-bottom: 2%;
-    text-align: center;
+  margin: auto;
+  padding-top: 2%;
+  margin-bottom: 2%;
+  text-align: center;
 }
 
-/* @media(max-width: 1000px){
-  .square{
-    width: 700px;
-    background-color:#454d55;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 10%;
-  }
-} */
-
-.btn-primary{
+.btn-primary {
   background-color: #454d55;
 }
-.button1{
+
+.button1 {
   text-align: center;
   margin: 20px;
   margin-bottom: 0px;
 }
-.btn-primary{
+
+.btn-primary {
   background-color: #08373e;
-  border-color:#0000;
+  border-color: #0000;
 }
-.kaka{
+
+.kaka {
   margin: 10px;
 }
-.kaka2{
+
+.kaka2 {
   margin: auto;
   width: 100%;
 }
-h2{
- font-size: 30px;
-}
-#creek{
-  margin-bottom: 30px;
 
+h2 {
+  font-size: 30px;
+}
+
+#creek {
+  margin-bottom: 30px;
 }
 
 .dt {
@@ -104,10 +101,12 @@ h2{
   border-radius: 10px;
   box-shadow: 7px 7px 0px #0000004b;
 }
-h3{
+
+h3 {
   color: #FFFFFF;
 }
-#knopka{
+
+#knopka {
   background: #454d55;
   vertical-align: middle;
   font-size: 20px;
@@ -116,9 +115,11 @@ h3{
   width: 200px;
   height: 50px;
 }
-.title_css{
+
+.title_css {
   color: #FFF;
 }
+
 .name {
   background-color: #343A40;
   border-radius: 10px;
@@ -127,10 +128,21 @@ h3{
   margin-top: 1%;
   margin-bottom: 0;
 }
-.come_back{
+
+.come_back {
   top: calc(100% - 50px);
   left: 0;
   cursor: pointer;
   position: absolute;
   font-size: 12pt;
+}
+
+.modal-content {
+  color: #fff;
+  background-color: #1e2225;
+}
+
+.modal-content1 {
+  color: #fff;
+  background-color: #1e2225;
 }
