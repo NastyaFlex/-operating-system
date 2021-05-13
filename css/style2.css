@@ -1,12 +1,9 @@
-@import url('http://fonts.cdnfonts.com/css/gilroy-bold');
-
-* {
-  font-family: Courer New;
-}
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400&display=swap');
 
 body {
   background-color: #1e2225;
   display: block;
+  font-family: 'Nunito', sans-serif;
 }
 
 body, html {
@@ -145,4 +142,8 @@ h3 {
 .modal-content1 {
   color: #fff;
   background-color: #1e2225;
+}
+
+.hide {
+  display: none;
 }

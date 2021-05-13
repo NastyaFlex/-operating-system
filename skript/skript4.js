@@ -49,7 +49,7 @@ function list_vm() {
             "beforeend",
             `<div>
                <div class="tittle_param">${mashina.params[key][0]}</div>
-               <div class="kvadrat" id="${key}">${mashina.params[key][1]}</div>
+               <div class="kvadrat" name="${key}">${mashina.params[key][1]}</div>
              </div>`
           );
         }
@@ -66,7 +66,7 @@ function list_vm() {
           let turn_off = document.getElementById('turn_off');
           turn_off.classList.remove("hide");
         }
-        if (mashina.params.status[1] == "shutdovn") {
+        if (mashina.params.status[1] == "shut off") {
           let turn_off = document.getElementById('turn_off');
           turn_off.classList.add("hide");
           let turn_on = document.getElementById('turn_on');
@@ -108,15 +108,30 @@ function toggle_car(toggle) {
       loading.hide();
       document.getElementById("turn_on").classList.toggle("hide");
       document.getElementById("turn_off").classList.toggle("hide");
-      document.getElementById("status").innerHTML = papaya.response;
+      document.getElementById(id_car).querySelector("[name=status]").innerHTML = papaya.response;
     }
   }
 }
 
 function switch_car(id) {
-  document.getElementById(id).style.display = "";
+  if (id_car == id) { return }
+  let curr_car = document.getElementById(id);
+  curr_car.style.display = "";
   document.getElementById(id_car).style.display = "none";
   id_car = id;
+
+  if (curr_car.querySelector("[name=status]").innerHTML == "running") {
+    let turn_on = document.getElementById('turn_on');
+    turn_on.classList.add("hide");
+    let turn_off = document.getElementById('turn_off');
+    turn_off.classList.remove("hide");
+  }
+  if (curr_car.querySelector("[name=status]").innerHTML == "shut off") {
+    let turn_off = document.getElementById('turn_off');
+    turn_off.classList.add("hide");
+    let turn_on = document.getElementById('turn_on');
+    turn_on.classList.remove("hide");
+  }
 }
 
 function vm() {
@@ -124,5 +139,5 @@ function vm() {
 }
 
 function klik() {
-  document.location.href = "index3.html";
+  document.location.href = "index2.html";
 }

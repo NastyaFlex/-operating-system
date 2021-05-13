@@ -1,3 +1,4 @@
+document.getElementsByClassName('square')[0].style.display = "none";
 let loading = new bootstrap.Modal(document.getElementById('loading'), {
   backdrop: "static"
 });
@@ -42,6 +43,7 @@ tweek.onload = function() {
       }
       square.append(craig);
     }
+    document.getElementsByClassName('square')[0].style.display = "";
   }
 }
 
@@ -110,5 +112,5 @@ function submitForm(event) {
 
 }
 function creat(){
-  document.location.href = "index3.html";
+  document.location.href = "index4v2.html";
 }

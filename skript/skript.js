@@ -8,7 +8,7 @@ function auth() {
   xhr.onload = function(){
     if (xhr.status == 200) {
       localStorage.setItem('chef', xhr.responseText);
-      document.location.href = "index3.html";
+      document.location.href = "index4v2.html";
     }
   }
 }

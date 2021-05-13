@@ -1,8 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
-
-* {
-  font-family: 'Montserrat', sans-serif;
-}
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400&display=swap');
 
 .square {
   position: absolute;
@@ -19,6 +15,7 @@
 
 body {
   background-color: #1e2225;
+  font-family: 'Nunito', sans-serif;
 }
 
 .form-group {

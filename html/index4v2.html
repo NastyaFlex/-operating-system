@@ -13,7 +13,7 @@
 
 <body>
 
-  <div class="modal fade" id="loading" tabindex="-1"  data-bs-backdrop="static" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal fade" id="loading" tabindex="-1" data-bs-backdrop="static" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
       <div id="floatingCirclesG">
         <div class="f_circleG" id="frotateG_01"></div>
@@ -79,7 +79,7 @@
           <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#container" type="button" role="tab" aria-controls="home" aria-selected="true">Характеристики</button>
         </li>
         <li class="fix-okno nav-item" role="presentation">
-          <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false">Диски</button>
+          <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#disks" type="button" role="tab" aria-controls="profile" aria-selected="false">Диски</button>
         </li>
         <li class="nav-item" role="presentation">
           <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact" type="button" role="tab" aria-controls="contact" aria-selected="false">Новый диск</button>
@@ -97,63 +97,25 @@
       <div class="tab-content" id="myTabContent">
         <div class="tab-pane fade show active scroll" id="container" role="tabpanel" aria-labelledby="home-tab">
         </div>
-        <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-          <div class="scroll-table">
-            <table class="table table-dark table-striped table-bordered">
-              <thead>
-                <tr>
-                  <th colspan="">Название</th>
-                  <th colspan="">Размер</th>
-                  <th colspan="">Тип</th>
-                  <th colspan=""></th>
-                </tr>
-              </thead>
-            </table>
-          </div>
-          <div class="scroll-table-body">
-            <table class="table table-dark table-striped table-bordered">
-              <tboby>
-                <tr>
-                  <th scope="row">2</th>
-                  <td colspan="1">Larry the Bird</td>
-                  <td>@twitter</td>
-                  <td><img data-bs-toggle="modal" data-bs-target="#modal_cross" class="cursor" onclick="()" src="../res/close.png" /></td>
-                </tr>
-                <tr>
-                  <th scope="row">2</th>
-                  <td colspan="1">Larry the Bird</td>
-                  <td>@twitter</td>
-                  <td class="cursor">x</td>
-                </tr>
-                <tr>
-                  <th scope="row">2</th>
-                  <td colspan="1">Larry the Bird</td>
-                  <td>@twitter</td>
-                  <td class="cursor">x</td>
-                </tr>
-                <tr>
-                  <th scope="row">2</th>
-                  <td colspan="1">Larry the Bird</td>
-                  <td>@twitter</td>
-                  <td class="cursor">x</td>
-                </tr>
-                <tr>
-                  <th scope="row">2</th>
-                  <td colspan="1">Larry the Bird</td>
-                  <td>@twitter</td>
-                  <td>x</td>
-                </tr>
-                <tr>
-                  <th scope="row">2</th>
-                  <td colspan="1">Larry the Bird</td>
-                  <td>@twitter</td>
-                  <td>x</td>
-                </tr>
-
-                </tbody>
-            </table>
-
-          </div>
+        <div class="tab-pane fade" id="disks" role="tabpanel" aria-labelledby="profile-tab">
+          <table class="table table-dark table-striped table-bordered">
+            <thead>
+              <tr>
+                <th scope="col">Название</th>
+                <th scope="col">Тип</th>
+                <th scope="col">Размер</th>
+                <th scope="col" width="10%">Удалить</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td >Mark</td>
+                <td>Otto</td>
+                <td>@mdo</td>
+                <td>@mdo</td>
+              </tr>
+            </tbody>
+          </table>
         </div>
         <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">...</div>
       </div>
