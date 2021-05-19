@@ -67,57 +67,58 @@ let url = `http://10.3.0.13:10005/params?token=${localStorage.getItem("chef")}` 
 // запрос на сервер, раскоментировать потом TODO
 
 fetch(url)
-    .then(res => res.json())
-    .then(res => {
-      createFormForSystem(res);
-    }) // вызывает функцию построения формы и передает туда ответ от сервера
+  .then(res => res.json())
+  .then(res => {
+    createFormForSystem(res);
+  }) // вызывает функцию построения формы и передает туда ответ от сервера
 
 const createFormForSystem = (response) => {
-    // response = {"nameVM":{"name":"Имя хоста","type":"butters","OYA":true},"ram":{"name":"Оперативная память, МБ","type":"kenny","values":[1024,2048,4096],"OYA":true},"disk_size":{"name":"Размер памяти машины, ГБ","type":"kenny","values":[10,20,50],"OYA":true},"vcpus":{"name":"Количество ядер","type":"kenny","values":[1,2,4]},"os":{"name":"Тип системы","type":"kenny","values":[],"OYA":true}}
+  // response = {"nameVM":{"name":"Имя хоста","type":"butters","OYA":true},"ram":{"name":"Оперативная память, МБ","type":"kenny","values":[1024,2048,4096],"OYA":true},"disk_size":{"name":"Размер памяти машины, ГБ","type":"kenny","values":[10,20,50],"OYA":true},"vcpus":{"name":"Количество ядер","type":"kenny","values":[1,2,4]},"os":{"name":"Тип системы","type":"kenny","values":[],"OYA":true}}
 
-    const nameKey = Object.entries(response).map(el => el[0])
+  const nameKey = Object.entries(response).map(el => el[0])
 
-    let parentEl = document.getElementsByClassName('glav')[0];
+  let parentEl = document.getElementsByClassName('glav')[0];
 
-    let rendi = Object.entries(response).map(el => el[1])
+  let rendi = Object.entries(response).map(el => el[1])
 
 
-    console.log(rendi);
+  console.log(rendi);
 
-    for (let i = 0; i < rendi.length; i++ ) {
+  for (let i = 0; i < rendi.length; i++) {
 
-        parentEl.insertAdjacentHTML("beforeend", `
+    parentEl.insertAdjacentHTML("beforeend", `
             <div id = 'craig${i}' class = 'kaka'><h2 class = 'title_css'>${rendi[i].name}</h2></div>
         `)
 
 
 
-        if (rendi[i].type === 'input') {
-            document.getElementById(`craig${i}`).insertAdjacentHTML('beforeend', `
-                <input class = 'form-control' name = '${nameKey[i]}'>
+    if (rendi[i].type === 'input') {
+      document.getElementById(`craig${i}`).insertAdjacentHTML('beforeend', `
+                <input class = 'form-control' maxlength='16' placeholder = '${rendi[i].placeholder}' name = '${nameKey[i]}'>
             `)
-        }
+    }
 
-        if (rendi[i].type === 'number') {
-            document.getElementById(`craig${i}`).insertAdjacentHTML('beforeend', `
-                <input type="number" min="${rendi[i].min}" max="${rendi[i].max}" class = 'form-control' name = '${nameKey[i]}'>
+    if (rendi[i].type === 'number') {
+      document.getElementById(`craig${i}`).insertAdjacentHTML('beforeend', `
+                <input type="number" min="${rendi[i].min}" max="${rendi[i].max}" value="${rendi[i].default}" placeholder="${rendi[i].max}" class = 'form-control' name = '${nameKey[i]}'>
             `)
-        }
+    }
 
-        if (rendi[i].type === 'kenny') {
-            document.getElementById(`craig${i}`).insertAdjacentHTML("beforeend", `
+    if (rendi[i].type === 'kenny') {
+      document.getElementById(`craig${i}`).insertAdjacentHTML("beforeend", `
               <select id = 'kyle${i}' name = '${nameKey[i]}' class = 'form-select'>${name}</select>
             `)
-            for (x in rendi[i].values) {
-                document.getElementById(`kyle${i}`).insertAdjacentHTML("beforeend", `
+      for (x in rendi[i].values) {
+        document.getElementById(`kyle${i}`).insertAdjacentHTML("beforeend", `
                     <option>${rendi[i].values[x]}</option>
                 `)
-            }
-        }
+      }
     }
+  }
 }
 
 function submitForm(event) {
+  let create_VM_butt = document.getElementById("create_VM_butt");
   // Отменяем стандартное поведение браузера с отправкой формы
   event.preventDefault();
   // event.target — это HTML-элемент form
@@ -143,23 +144,25 @@ function submitForm(event) {
     return;
   }
 
+  let tweek = new XMLHttpRequest();
+  tweek.open('GET', `http://10.3.0.13:10005/containNameVM?name=${obj.nameVM}`);
+  tweek.send(); //отправляет запрос на сервер
+  tweek.onload = function() {
+    if (tweek.status === 200 && tweek.responseText === 'true') {
+      modal_error.show("ПИСЬКА");
+    }
+  };
+
   console.log(obj);
 
   let json = JSON.stringify(obj);
 
-  let tweek = new XMLHttpRequest();
   tweek.open('POST', `http://10.3.0.13:10005/createVM?token=${localStorage.getItem("chef")}`);
   tweek.send(json);
+  create_VM_butt.disabled = true;
 
-  loading.show()
-
-  hideMenu = () => {
-    loading.hide()
-  }
-
-
-  tweek.onload = function () {
-
+  tweek.onload = function() {
+    create_VM_butt.disabled = false;
     if (tweek.status === 200) {
       let myNode = document.getElementsByClassName('kaka2')[0];
       myNode.innerHTML = '';
@@ -185,28 +188,19 @@ function submitForm(event) {
       let bunniTwo1 = document.createElement("h2");
       bunniTwo1.className = "ta";
       bunniTwo1.innerHTML = timmi.port;
-      bunniOne1.append(bunniTwo1);
       bunniOne1.append(bunni1);
       myNode.append(bunniOne1);
-
-      loading.hide();
+      bunniOne1.append(bunniTwo1);
     }
 
-     if (tweek.status === 400) {
-
-
-       hideMenu()
-
-       new Promise((resolve, rej) => {
-         resolve(loading.hide())
-       })
+    if (tweek.status === 400) {
 
       console.log('123123124124');
 
       // document.getElementById("modal_error").modal("hide");
 
       document.getElementById('error_message').innerHTML = tweek.responseText;
-      //modal_error.show();
+      modal_error.show();
 
     }
   }
