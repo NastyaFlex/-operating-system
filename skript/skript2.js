@@ -1,10 +1,11 @@
-//document.getElementsByClassName('square')[0].style.display = "none";
 let loading = new bootstrap.Modal(document.getElementById('loading'), {
   backdrop: "static"
 });
 let empty_in = new bootstrap.Modal(document.getElementById('empty_in'));
 let empty_in1 = new bootstrap.Modal(document.getElementById('empty_in1'));
-let modal_error = new bootstrap.Modal(document.getElementById('modal_error'));
+let modal_error = new bootstrap.Modal(document.getElementById('modal_error'), {
+  backdrop: "static"
+});
 let tweek = new XMLHttpRequest();
 tweek.open('GET', `http://10.3.0.13:10005/params?token=${localStorage.getItem("chef")}`);
 // // tweek.open('GET',"http://25.46.45.114:10000/reg");
@@ -66,11 +67,22 @@ document.getElementsByClassName('kaka2')[0].addEventListener('submit', submitFor
 let url = `http://10.3.0.13:10005/params?token=${localStorage.getItem("chef")}` // url откуда берем информацию по машинам
 // запрос на сервер, раскоментировать потом TODO
 
-fetch(url)
-  .then(res => res.json())
-  .then(res => {
-    createFormForSystem(res);
-  }) // вызывает функцию построения формы и передает туда ответ от сервера
+
+async function getData() {
+  const response = await fetch(url)
+
+  const data = await response.text()
+
+  console.log(data);
+  if (response.status === 200) {
+    createFormForSystem(JSON.parse(data));
+  } else {
+    document.getElementById('error_message').innerHTML = data;
+    modal_error.show();
+  }
+}
+
+getData()
 
 const createFormForSystem = (response) => {
   // response = {"nameVM":{"name":"Имя хоста","type":"butters","OYA":true},"ram":{"name":"Оперативная память, МБ","type":"kenny","values":[1024,2048,4096],"OYA":true},"disk_size":{"name":"Размер памяти машины, ГБ","type":"kenny","values":[10,20,50],"OYA":true},"vcpus":{"name":"Количество ядер","type":"kenny","values":[1,2,4]},"os":{"name":"Тип системы","type":"kenny","values":[],"OYA":true}}
@@ -115,6 +127,7 @@ const createFormForSystem = (response) => {
       }
     }
   }
+  document.getElementsByClassName('square')[0].style.display = "";
 }
 
 function submitForm(event) {
@@ -145,63 +158,61 @@ function submitForm(event) {
   }
 
   let tweek = new XMLHttpRequest();
+  console.log(`http://10.3.0.13:10005/containNameVM?name=${obj.nameVM}`);
   tweek.open('GET', `http://10.3.0.13:10005/containNameVM?name=${obj.nameVM}`);
   tweek.send(); //отправляет запрос на сервер
-  tweek.onload = function() {
-    if (tweek.status === 200 && tweek.responseText === 'true') {
-      modal_error.show("ПИСЬКА");
-    }
-  };
-
-  console.log(obj);
-
-  let json = JSON.stringify(obj);
-
-  tweek.open('POST', `http://10.3.0.13:10005/createVM?token=${localStorage.getItem("chef")}`);
-  tweek.send(json);
   create_VM_butt.disabled = true;
-
   tweek.onload = function() {
-    create_VM_butt.disabled = false;
     if (tweek.status === 200) {
-      let myNode = document.getElementsByClassName('kaka2')[0];
-      myNode.innerHTML = '';
-      document.getElementById("ded").innerHTML = "Данные для входа";
+      if (tweek.response == 'true') {
+        document.getElementById('error_message').innerHTML = "Смени название.";
+        modal_error.show();
+        create_VM_butt.disabled = false;
+      } else {
+        let json = JSON.stringify(obj);
 
-      let timmi = JSON.parse(tweek.responseText);
+        tweek.open('POST', `http://10.3.0.13:10005/createVM?token=${localStorage.getItem("chef")}`);
+        tweek.send(json);
+        loading.show();
 
-      let bunniOne = document.createElement("div");
-      bunniOne.className = 'dt';
-      let bunni = document.createElement("h2");
-      bunni.innerHTML = "ip:";
-      let bunniTwo = document.createElement("h2");
-      bunniTwo.className = "ta";
-      bunniTwo.innerHTML = timmi.ip;
-      bunniOne.append(bunni);
-      bunniOne.append(bunniTwo);
-      myNode.append(bunniOne);
+        tweek.onload = function() {
+          create_VM_butt.disabled = false;
+          if (tweek.status === 200) {
+            let myNode = document.getElementsByClassName('kaka2')[0];
+            myNode.innerHTML = '';
+            document.getElementById("ded").innerHTML = "Данные для входа";
 
-      let bunniOne1 = document.createElement("div");
-      bunniOne1.className = 'dt';
-      let bunni1 = document.createElement("h2");
-      bunni1.innerHTML = "Порт:";
-      let bunniTwo1 = document.createElement("h2");
-      bunniTwo1.className = "ta";
-      bunniTwo1.innerHTML = timmi.port;
-      bunniOne1.append(bunni1);
-      myNode.append(bunniOne1);
-      bunniOne1.append(bunniTwo1);
-    }
+            let timmi = JSON.parse(tweek.responseText);
 
-    if (tweek.status === 400) {
+            let bunniOne = document.createElement("div");
+            bunniOne.className = 'dt';
+            let bunni = document.createElement("h2");
+            bunni.innerHTML = "ip:";
+            let bunniTwo = document.createElement("h2");
+            bunniTwo.className = "ta";
+            bunniTwo.innerHTML = timmi.ip;
+            bunniOne.append(bunni);
+            bunniOne.append(bunniTwo);
+            myNode.append(bunniOne);
 
-      console.log('123123124124');
+            let bunniOne1 = document.createElement("div");
+            bunniOne1.className = 'dt';
+            let bunni1 = document.createElement("h2");
+            bunni1.innerHTML = "Порт:";
+            let bunniTwo1 = document.createElement("h2");
+            bunniTwo1.className = "ta";
+            bunniTwo1.innerHTML = timmi.port;
+            bunniOne1.append(bunni1);
+            myNode.append(bunniOne1);
+            bunniOne1.append(bunniTwo1);
+          }
 
-      // document.getElementById("modal_error").modal("hide");
-
-      document.getElementById('error_message').innerHTML = tweek.responseText;
-      modal_error.show();
-
+          if (tweek.status === 400) {
+            console.log(tweek.response);
+          }
+          loading.hide();
+        }
+      }
     }
   }
 }

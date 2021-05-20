@@ -72,15 +72,15 @@ function list_vm() {
           let turn_on = document.getElementById('turn_on');
           turn_on.classList.remove("hide");
         }
+        //Загрузка дисков
+        list_disks(mashina.id);
       }
 
       let car_characteristic = document.getElementById("container").firstChild;
       car_characteristic.style.display = "";
 
       id_car = car_characteristic.getAttribute("id");
-      console.log(id_car);
     }
-
   }
 }
 
@@ -114,10 +114,16 @@ function toggle_car(toggle) {
 }
 
 function switch_car(id) {
-  if (id_car == id) { return }
+  if (id_car == id) {
+    return
+  }
   let curr_car = document.getElementById(id);
   curr_car.style.display = "";
   document.getElementById(id_car).style.display = "none";
+
+  document.querySelector(`tbody#${CSS.escape(id)}`).style.display = "";
+  document.querySelector(`tbody#${CSS.escape(id_car)}`).style.display = "none";
+
   id_car = id;
 
   if (curr_car.querySelector("[name=status]").innerHTML == "running") {
@@ -140,4 +146,35 @@ function vm() {
 
 function klik() {
   document.location.href = "index2.html";
+}
+
+function list_disks(id_vm) {
+  console.log(id_vm);
+  let xhr = new XMLHttpRequest();
+  xhr.open('GET', `http://10.3.0.13:10005/listDisks?token=${localStorage.getItem("chef")}&vmID=${id_vm}`);
+  xhr.send();
+
+  xhr.onload = function() {
+    if (xhr.status === 200) {
+      let arrdisks = JSON.parse(xhr.response); //массив дисков
+
+      document.getElementById("param_disks").insertAdjacentHTML("beforeend", `
+      <tbody id="${id_vm}" style="display:none"></tbody>
+      `);
+      arrdisks.forEach(function(disk, i) {
+        document.querySelector(`tbody#${CSS.escape(id_vm)}`).insertAdjacentHTML("beforeend", `
+        <tr id="${disk.id}">
+          <td>${disk.path}</td>
+          <td>${disk.type}</td>
+          <td>${disk.size.toFixed(2)}</td>
+          <td>x</td>
+        </tr>
+        `);
+      });
+    }
+  }
+}
+
+function showDisks() {
+  document.querySelector(`tbody#${CSS.escape(id_car)}`).style.display = "";
 }
