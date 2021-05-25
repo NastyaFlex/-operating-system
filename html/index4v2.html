@@ -46,8 +46,8 @@
       </div>
     </div>
 
-    <!-- Для cross -->
-    <div class="modal fade" id="modal_cross" tabindex="-1" data-bs-backdrop="static" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<!-- Диски удалить -->
+    <div class="modal fade" id="modal_disk" tabindex="-1" data-bs-backdrop="static" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
@@ -58,7 +58,7 @@
             Вы действительно хотите удалить этот диск?
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary col" data-bs-dismiss="modal">Да</button>
+            <button type="button" class="btn btn-secondary col" data-bs-dismiss="modal" onclick="delete_disk()">Да</button>
             <button type="button" class="btn btn-primary col" data-bs-dismiss="modal">Нет</button>
           </div>
         </div>
@@ -121,7 +121,8 @@
     </div>
   </div>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
-  <script type="text/javascript" src=../skript/skript4.js></script>
+  <script src="../skript/disks.js" charset="utf-8"></script>
+  <script type="text/javascript"  src="../skript/skript4.js"></script>
 </body>
 
 </html>
