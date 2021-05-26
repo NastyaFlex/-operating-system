@@ -17,7 +17,9 @@ function list_disks(id_vm) {
           <td>${disk.path}</td>
           <td>${disk.type}</td>
           <td>${disk.size.toFixed(2)}</td>
-          <td data-bs-toggle="modal" data-bs-target="#modal_disk" onclick="select_disk_from_delete(this)">x</td>
+          <td data-bs-toggle="modal" data-bs-target="#modal_disk" onclick="select_disk_from_delete(this)">
+          <span class="cross">x</span>
+          </td>
         </tr>
         `);
       });

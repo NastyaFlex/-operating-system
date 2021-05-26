@@ -132,6 +132,13 @@ body {
   border-color: green;
 }
 
+.center{
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+  flex-direction: column;
+}
+
 .hide {
   display: none;
 }
@@ -196,4 +203,32 @@ body {
 }
 .return{
   width: auto;
+}
+.cross{
+  cursor: pointer;
+}
+.type_selection{
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  width: 100%;
+}
+#disc_type{
+  display: flex;
+  gap: 150px;
+  margin-top: 10px;
+  justify-content: center;
+  color: #FFF;
+}
+h3{
+  margin: 20px;
+  color: #FFF;
+}
+#send{
+    width: fit-content;
+    margin: auto;
+    margin-bottom: 10px;
+}
+.the_size{
+  border-radius: 5px;
 }
