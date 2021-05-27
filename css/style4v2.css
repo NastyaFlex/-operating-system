@@ -7,9 +7,6 @@ body {
   /* font-size: 20px; */
 }
 
-.btn-secondary {
-  width: 150px;
-}
 
 #okno {
   position: absolute;
@@ -231,4 +228,14 @@ h3{
 }
 .the_size{
   border-radius: 5px;
+  width: 100px;
+}
+#select_disk{
+  background-color: #a9a9a9;
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+.modal-content {
+  color: #fff;
+  background-color: #1e2225;
 }

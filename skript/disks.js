@@ -44,6 +44,7 @@ function delete_disk(){
   xhr.onload = function(){
     if (xhr.status === 200) {
       disk_tr.remove();
+      update_rokiv();
     }
   }
 }
