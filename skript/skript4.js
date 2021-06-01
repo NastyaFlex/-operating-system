@@ -49,7 +49,7 @@ function list_vm() {
             "beforeend",
             `<div>
                <div class="tittle_param">${mashina.params[key][0]}</div>
-               <div class="kvadrat" name="${key}">${mashina.params[key][1]}</div>
+               <div class="kvadrat input_text" name="${key}">${mashina.params[key][1]}</div>
              </div>`
           );
         }

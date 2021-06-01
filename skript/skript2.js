@@ -122,7 +122,7 @@ const createFormForSystem = (response) => {
             `)
       for (x in rendi[i].values) {
         document.getElementById(`kyle${i}`).insertAdjacentHTML("beforeend", `
-                    <option>${rendi[i].values[x]}</option>
+                    <option value="${rendi[i].values[x].value}">${rendi[i].values[x].name}</option>
                 `)
       }
     }
@@ -170,6 +170,7 @@ function submitForm(event) {
         create_VM_butt.disabled = false;
       } else {
         let json = JSON.stringify(obj);
+        console.log(obj);
 
         tweek.open('POST', `http://10.3.0.13:10005/createVM?token=${localStorage.getItem("chef")}`);
         tweek.send(json);

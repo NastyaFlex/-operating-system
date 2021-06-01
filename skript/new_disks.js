@@ -32,9 +32,10 @@ update_rokiv();
 
 document.getElementsByClassName('type_selection')[0].addEventListener('submit', send_new_disk);
 
+let iso_path;
+
 function send_new_disk() {
   let button = event.target;
-  button.disabled = true;
 
   let type_disk = document.querySelector('input[name="type"]:checked').value;
   let disk_size = document.getElementById("new_disk_size").value;
@@ -42,17 +43,23 @@ function send_new_disk() {
 
   let xhr = new XMLHttpRequest();
   let parameters;
-  if (type_disk === "CD"){
-    parameters = `type=${type_disk}&iso_path=fgfgfg`
+  if (type_disk === "CD") {
+    if (iso_path == null){
+      document.getElementById('error_message').innerHTML = "Выберите образ диска.";
+      modal_error.show();
+      return;
+    }
+    parameters = `type=${type_disk}&iso_path=${iso_path}`
   } else {
     parameters = `type=${type_disk}&disk_size=${disk_size}`
   }
   xhr.open('GET', `http://10.3.0.13:10005/createDisk?token=${localStorage.getItem("chef")}&vmID=${id_car}&` + parameters);
   xhr.send()
+  button.disabled = true;
 
   xhr.onload = function() {
     button.disabled = false;
-    if (xhr.status == 200){
+    if (xhr.status == 200) {
       location.reload(); //обновление страницы
     } else {
       document.getElementById('error_message').innerHTML = xhr.response;
@@ -60,8 +67,9 @@ function send_new_disk() {
     }
   }
 }
-
+//Файловое дерево
 let loaded_filetree = false;
+
 
 function load_filetree() {
   if (loaded_filetree) {
@@ -71,15 +79,40 @@ function load_filetree() {
   xhr.open('GET', `http://10.3.0.13:10005/getFileTreeISO`);
   xhr.send();
 
-  xhr.onload = function(){
-    if (xhr.status == 200){
+  xhr.onload = function() {
+    if (xhr.status == 200) {
       console.log(xhr.response);
+      let head_folder = JSON.parse(xhr.response);
+      builder_tree(head_folder, document.getElementById("metisFolder_metismenu"));
     }
 
     $(".metisFolder").metisMenu({
-       toggle: false
-     });
+      toggle: false
+    });
 
-     loaded_filetree = true;
+    loaded_filetree = true;
   }
+}
+
+function builder_tree(folder, ul_folder, path = "") {
+  for (twig_object of folder) {
+    let twig = document.createElement("li");
+    if (twig_object.nodes != null) {
+      let curr_path = path + twig_object.name + "/";
+      twig.insertAdjacentHTML(`afterbegin`, `<a href="#"><i class="bi bi-folder"></i>${twig_object.name}</a>`);
+      let tag_folder = document.createElement("ul");
+      twig.append(tag_folder);
+      let ne_head_folder = twig_object.nodes;
+      builder_tree(ne_head_folder, tag_folder, curr_path);
+    }else{
+      twig.insertAdjacentHTML(`afterbegin`, `<a href="#" path=${path + twig_object.name} onclick="iso_selection(this)" data-bs-dismiss="modal"><i class="bi bi-file-earmark-text"></i>${twig_object.name}</a>`);
+    }
+    ul_folder.append(twig);
+  }
+}
+
+function iso_selection(selected){
+  iso_path = selected.getAttribute("path");
+  console.log(iso_path);
+  document.getElementById("select_disk").innerHTML = "Вы выбрали образ: " + iso_path;
 }

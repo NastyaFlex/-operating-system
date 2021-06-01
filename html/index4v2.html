@@ -89,18 +89,11 @@
       <div class="modal-dialog modal-xl">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Внимание!</h5>
+            <h5 class="modal-title" id="exampleModalLabel">Выберите образ диска</h5>
           </div>
-          <div class="modal-body" id="error_message">
-            <ul class="metisFolder metismenu">
-              <li>
-                <a href="#"><i class="bi bi-folder"></i>папка 1</a>
-                <ul>
-                  <li>
-                    <a href="#"><i class="bi bi-file-earmark"></i>папка.jpg</a>
-                  </li>
-                </ul>
-              </li>
+          <div class="modal-body" id="filetree_modal">
+            <ul class="metisFolder metismenu" id="metisFolder_metismenu">
+              <!-- здесь что-то будет -->
             </ul>
           </div>
           <div class="modal-footer">
@@ -117,7 +110,7 @@
       <ul class="dropdown-menu" id="car">
       </ul>
     </div>
-    <button type="button" onclick="klik()" class="btn btn-secondary return">Вернуться назад</button>
+    <button type="button" onclick="klik()" class="btn btn-secondary return">Создать новую машину</button>
     <div class="" id="okno">
       <ul class="nav nav-tabs" id="myTab">
 
@@ -130,7 +123,7 @@
         <li class="nav-item" role="presentation">
           <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact" type="button" role="tab" aria-controls="contact" aria-selected="false">Новый диск</button>
         </li>
-        <button type="button" class="btn btn-dark two_buttons" data-bs-toggle="modal" data-bs-target="#exampleModal">Удалить</button>
+        <button type="button" class="btn btn-dark two_buttons" data-bs-toggle="modal" data-bs-target="#exampleModal">Удалить машину</button>
         <button type="button" onclick="toggle_car(true)" class="btn btn-dark vkl" id="turn_on">Вкл.</button>
         <button type="button" onclick="toggle_car(false)" class="btn btn-dark vkl2 hide" id="turn_off">Выкл.</button>
       </ul>
@@ -163,10 +156,10 @@
             <div id="disc_type">
 
               <span>
-                <input class="form-check-input" onchange="type_changed(this)" type="radio" name="type" value="CD">CDROM
+                <input class="form-check-input" onchange="type_changed(this)" id="cdRom" type="radio" name="type" value="CD"><label for="cdRom">CDROM</label>
               </span>
               <span>
-                <input class="form-check-input" onchange="type_changed(this)" type="radio" name="type" checked value="Hard">Жесткий диск
+                <input class="form-check-input" onchange="type_changed(this)" id="hardDisk" type="radio" name="type" checked value="Hard"><label for="hardDisk">Жесткий диск</label>
               </span>
             </div>
             <div id="cdrom_content" class="center hide">
