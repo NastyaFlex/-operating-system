@@ -38,7 +38,7 @@ function list_vm() {
         characteristic.setAttribute("class", "content_vm");
         characteristic.insertAdjacentHTML("afterbegin", `
          <div class="name">
-           <h1>${mashina.name}</h1>
+           <h1 class="very_big_text">${mashina.name}</h1>
          </div>
          `);
 
@@ -48,8 +48,8 @@ function list_vm() {
           text.insertAdjacentHTML(
             "beforeend",
             `<div>
-               <div class="tittle_param">${mashina.params[key][0]}</div>
-               <div class="kvadrat input_text" name="${key}">${mashina.params[key][1]}</div>
+               <div class="big_text">${mashina.params[key][0]}</div>
+               <div class="kvadrat input_text small_text" name="${key}">${mashina.params[key][1]}</div>
              </div>`
           );
         }

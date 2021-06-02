@@ -9,7 +9,7 @@ function list_disks(id_vm) {
       let arrdisks = JSON.parse(xhr.response); //массив дисков
 
       document.getElementById("param_disks").insertAdjacentHTML("beforeend", `
-      <tbody id="${id_vm}" style="display:none"></tbody>
+      <tbody id="${id_vm}" class="small_text" style="display:none"></tbody>
       `);
       arrdisks.forEach(function(disk, i) {
         document.querySelector(`tbody#${CSS.escape(id_vm)}`).insertAdjacentHTML("beforeend", `
