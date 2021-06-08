@@ -1,21 +1,21 @@
 let characteristics = [];
 let id_car;
-let papaya = new XMLHttpRequest();
+let xhr = new XMLHttpRequest();
 let loading = new bootstrap.Modal(document.getElementById('loading'), {
   backdrop: "static"
 });
 list_vm();
 
 function list_vm() {
-  papaya.open('GET', `http://10.3.0.13:10005/listVMs?token=${localStorage.getItem("chef")}`);
-  papaya.send(); //отправляем запрос на сервер
+  xhr.open('GET', `http://10.3.0.13:10005/listVMs?token=${localStorage.getItem("token")}`);
+  xhr.send(); //отправляем запрос на сервер
 
   // Этот код сработает после того, как мы получим ответ сервера
-  papaya.onload = function() {
-    if (papaya.status != 200) {
-      console.log(papaya.status + " Ошибка");
+  xhr.onload = function() {
+    if (xhr.status != 200) {
+      console.log(xhr.status + " Ошибка");
     } else {
-      let jsontext = papaya.response;
+      let jsontext = xhr.response;
       let arrVMs = JSON.parse(jsontext);
       let car = document.getElementById("car");
 
@@ -85,12 +85,12 @@ function list_vm() {
 }
 
 function delete_car() {
-  papaya.open('GET', `http://10.3.0.13:10005/removeVM?token=${localStorage.getItem("chef")}&vmID=${id_car}`);
-  papaya.send();
+  xhr.open('GET', `http://10.3.0.13:10005/removeVM?token=${localStorage.getItem("token")}&vmID=${id_car}`);
+  xhr.send();
   loading.show();
 
-  papaya.onload = function() {
-    if (papaya.status == 200) {
+  xhr.onload = function() {
+    if (xhr.status == 200) {
       location.reload(); //обновление страницы
     } else {
       console.log("это злобное сообщение");
@@ -101,14 +101,14 @@ function delete_car() {
 function toggle_car(toggle) {
 
   loading.show();
-  papaya.open('GET', `http://10.3.0.13:10005/toggleVM?token=${localStorage.getItem("chef")}&vmID=${id_car}&status=${toggle}`);
-  papaya.send();
-  papaya.onload = function() {
-    if (papaya.status == 200) {
+  xhr.open('GET', `http://10.3.0.13:10005/toggleVM?token=${localStorage.getItem("token")}&vmID=${id_car}&status=${toggle}`);
+  xhr.send();
+  xhr.onload = function() {
+    if (xhr.status == 200) {
       loading.hide();
       document.getElementById("turn_on").classList.toggle("hide");
       document.getElementById("turn_off").classList.toggle("hide");
-      document.getElementById(id_car).querySelector("[name=status]").innerHTML = papaya.response;
+      document.getElementById(id_car).querySelector("[name=status]").innerHTML = xhr.response;
     }
   }
 }
@@ -141,9 +141,9 @@ function switch_car(id) {
 }
 
 function vm() {
-  document.location.href = "index2.html";
+  document.location.href = "new_vm.html";
 }
 
 function klik() {
-  document.location.href = "index2.html";
+  document.location.href = "new_vm.html";
 }

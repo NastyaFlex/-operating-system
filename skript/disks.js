@@ -1,7 +1,7 @@
 function list_disks(id_vm) {
   console.log(id_vm);
   let xhr = new XMLHttpRequest();
-  xhr.open('GET', `http://10.3.0.13:10005/listDisks?token=${localStorage.getItem("chef")}&vmID=${id_vm}`);
+  xhr.open('GET', `http://10.3.0.13:10005/listDisks?token=${localStorage.getItem("token")}&vmID=${id_vm}`);
   xhr.send();
 
   xhr.onload = function() {
@@ -35,16 +35,17 @@ function select_disk_from_delete(tr){
 
 function showDisks() {
   document.querySelector(`tbody#${CSS.escape(id_car)}`).style.display = "";
-}
+};
 
 function delete_disk(){
   let xhr = new XMLHttpRequest();
-  xhr.open('GET', `http://10.3.0.13:10005/deleteDisk?token=${localStorage.getItem("chef")}&vmID=${id_car}&diskID=${disk_tr.id}`);
+  xhr.open('GET', `http://10.3.0.13:10005/deleteDisk?token=${localStorage.getItem("token")}&vmID=${id_car}&diskID=${disk_tr.id}`);
   xhr.send();
   xhr.onload = function(){
     if (xhr.status === 200) {
       disk_tr.remove();
       update_rokiv();
+      reboot.show();
     }
   }
 }

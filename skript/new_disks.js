@@ -4,6 +4,9 @@ let modal_error = new bootstrap.Modal(document.getElementById('modal_error'), {
 let modal_filetree = new bootstrap.Modal(document.getElementById('modal_filetree'), {
   backdrop: "static"
 });
+let reboot = new bootstrap.Modal(document.getElementById('modal_reboot_vm'), {
+  backdrop: "static"
+});
 
 function type_changed(tag) {
   if (tag.value == "CD") {
@@ -18,7 +21,7 @@ function type_changed(tag) {
 
 function update_rokiv() {
   let xhr = new XMLHttpRequest();
-  xhr.open('GET', `http://10.3.0.13:10005/getAllowMaxDiskSize?token=${localStorage.getItem("chef")}`);
+  xhr.open('GET', `http://10.3.0.13:10005/getAllowMaxDiskSize?token=${localStorage.getItem("token")}`);
   xhr.send();
 
   xhr.onload = function() {
@@ -44,7 +47,7 @@ function send_new_disk() {
   let xhr = new XMLHttpRequest();
   let parameters;
   if (type_disk === "CD") {
-    if (iso_path == null){
+    if (iso_path == null) {
       document.getElementById('error_message').innerHTML = "Выберите образ диска.";
       modal_error.show();
       return;
@@ -53,18 +56,36 @@ function send_new_disk() {
   } else {
     parameters = `type=${type_disk}&disk_size=${disk_size}`
   }
-  xhr.open('GET', `http://10.3.0.13:10005/createDisk?token=${localStorage.getItem("chef")}&vmID=${id_car}&` + parameters);
+  xhr.open('GET', `http://10.3.0.13:10005/createDisk?token=${localStorage.getItem("token")}&vmID=${id_car}&` + parameters);
   xhr.send()
   button.disabled = true;
 
   xhr.onload = function() {
     button.disabled = false;
     if (xhr.status == 200) {
-      location.reload(); //обновление страницы
+      reboot.show();
     } else {
       document.getElementById('error_message').innerHTML = xhr.response;
       modal_error.show();
     }
+  }
+}
+
+function reboot_VM(or){
+  if (or == true) {
+    let xhr = new XMLHttpRequest();
+    xhr.open('GET', `http://10.3.0.13:10005/reloadVM?token=${localStorage.getItem("token")}&vmID=${id_car}`);
+    xhr.send();
+
+    xhr.onload = function() {
+      if (xhr.status == 200) {
+        location.reload(); //обновление страницы
+        
+      }
+    }
+  }
+  else{
+    location.reload();
   }
 }
 //Файловое дерево
@@ -104,14 +125,14 @@ function builder_tree(folder, ul_folder, path = "") {
       twig.append(tag_folder);
       let ne_head_folder = twig_object.nodes;
       builder_tree(ne_head_folder, tag_folder, curr_path);
-    }else{
+    } else {
       twig.insertAdjacentHTML(`afterbegin`, `<a href="#" path=${path + twig_object.name} onclick="iso_selection(this)" data-bs-dismiss="modal"><i class="bi bi-file-earmark-text"></i>${twig_object.name}</a>`);
     }
     ul_folder.append(twig);
   }
 }
 
-function iso_selection(selected){
+function iso_selection(selected) {
   iso_path = selected.getAttribute("path");
   console.log(iso_path);
   document.getElementById("select_disk").innerHTML = "Вы выбрали образ: " + iso_path;

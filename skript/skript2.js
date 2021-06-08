@@ -6,65 +6,12 @@ let empty_in1 = new bootstrap.Modal(document.getElementById('empty_in1'));
 let modal_error = new bootstrap.Modal(document.getElementById('modal_error'), {
   backdrop: "static"
 });
-let tweek = new XMLHttpRequest();
-tweek.open('GET', `http://10.3.0.13:10005/params?token=${localStorage.getItem("chef")}`);
-// // tweek.open('GET',"http://25.46.45.114:10000/reg");
-// tweek.send();
-// tweek.onload = function() {
-//   if (tweek.status === 200) {
-//     let square = document.getElementsByClassName('glav')[0];
-//     let json = JSON.parse(tweek.responseText);
-//     for (var name in json) {
-//       let rendi = json[name];
-//       let craig = document.createElement("div");
-//       craig.className = "kaka";
-//       //nen ljk;ty ,snm
-//       let title = document.createElement("h2");
-//       title.className = "title_css";
-//       title.innerHTML = rendi.name;
-//       craig.append(title);
-//       if (rendi.type == 'input') {
-//         let stan = document.createElement("input");
-//         stan.className = "form-control";
-//         stan.name = name;
-//         stan.placeholder = rendi.placeholder;
-//         stan.setAttribute("maxlength", "16");
-//         craig.append(stan);
-//       }
-//
-//       if (rendi.type == 'number') {
-//         let stan = document.createElement("input");
-//         stan.type = "number";
-//         stan.min = rendi.min;
-//         stan.max = rendi.max;
-//         stan.placeholder =  "Ваш лимит " + rendi.max;
-//         stan.value = rendi.default;
-//         stan.className = "form-control";
-//         stan.name = name;
-//         craig.append(stan);
-//       }
-//
-//       if (rendi.type == 'kenny') {
-//         let kyle = document.createElement("select");
-//         kyle.className = "form-select";
-//         kyle.name = name;
-//
-//         for (i in rendi.values) {
-//           let eric = document.createElement("option");
-//           eric.innerHTML = rendi.values[i];
-//           kyle.append(eric);
-//         }
-//         craig.append(kyle);
-//       }
-//       square.append(craig);
-//     }
-//     document.getElementsByClassName('square')[0].style.display = "";
-//   }
-// }
+let xhr = new XMLHttpRequest();
+xhr.open('GET', `http://10.3.0.13:10005/params?token=${localStorage.getItem("token")}`);
 
-document.getElementsByClassName('kaka2')[0].addEventListener('submit', submitForm);
+document.getElementsByClassName('template')[0].addEventListener('submit', submitForm);
 
-let url = `http://10.3.0.13:10005/params?token=${localStorage.getItem("chef")}` // url откуда берем информацию по машинам
+let url = `http://10.3.0.13:10005/params?token=${localStorage.getItem("token")}` // url откуда берем информацию по машинам
 // запрос на сервер, раскоментировать потом TODO
 
 
@@ -91,38 +38,38 @@ const createFormForSystem = (response) => {
 
   let parentEl = document.getElementsByClassName('glav')[0];
 
-  let rendi = Object.entries(response).map(el => el[1])
+  let parameters_for_new_system = Object.entries(response).map(el => el[1])
 
 
-  console.log(rendi);
+  console.log(parameters_for_new_system);
 
-  for (let i = 0; i < rendi.length; i++) {
+  for (let i = 0; i < parameters_for_new_system.length; i++) {
 
     parentEl.insertAdjacentHTML("beforeend", `
-            <div id = 'craig${i}' class = 'kaka'><h2 class = 'title_css'>${rendi[i].name}</h2></div>
+            <div id = 'input_for_new_system${i}' class = 'kaka'><h2 class = 'title_css'>${parameters_for_new_system[i].name}</h2></div>
         `)
 
 
 
-    if (rendi[i].type === 'input') {
-      document.getElementById(`craig${i}`).insertAdjacentHTML('beforeend', `
-                <input class = 'form-control' maxlength='16' placeholder = '${rendi[i].placeholder}' name = '${nameKey[i]}'>
+    if (parameters_for_new_system[i].type === 'input') {
+      document.getElementById(`input_for_new_system${i}`).insertAdjacentHTML('beforeend', `
+                <input class = 'form-control' maxlength='16' placeholder = '${parameters_for_new_system[i].placeholder}' name = '${nameKey[i]}'>
             `)
     }
 
-    if (rendi[i].type === 'number') {
-      document.getElementById(`craig${i}`).insertAdjacentHTML('beforeend', `
-                <input type="number" min="${rendi[i].min}" max="${rendi[i].max}" value="${rendi[i].default}" placeholder="${rendi[i].max}" class = 'form-control' name = '${nameKey[i]}'>
+    if (parameters_for_new_system[i].type === 'number') {
+      document.getElementById(`input_for_new_system${i}`).insertAdjacentHTML('beforeend', `
+                <input type="number" min="${parameters_for_new_system[i].min}" max="${parameters_for_new_system[i].max}" value="${parameters_for_new_system[i].default}" placeholder="${parameters_for_new_system[i].max}" class = 'form-control' name = '${nameKey[i]}'>
             `)
     }
 
-    if (rendi[i].type === 'kenny') {
-      document.getElementById(`craig${i}`).insertAdjacentHTML("beforeend", `
+    if (parameters_for_new_system[i].type === 'kenny') {
+      document.getElementById(`input_for_new_system${i}`).insertAdjacentHTML("beforeend", `
               <select id = 'kyle${i}' name = '${nameKey[i]}' class = 'form-select'>${name}</select>
             `)
-      for (x in rendi[i].values) {
+      for (x in parameters_for_new_system[i].values) {
         document.getElementById(`kyle${i}`).insertAdjacentHTML("beforeend", `
-                    <option value="${rendi[i].values[x].value}">${rendi[i].values[x].name}</option>
+                    <option value="${parameters_for_new_system[i].values[x].value}">${parameters_for_new_system[i].values[x].name}</option>
                 `)
       }
     }
@@ -157,14 +104,14 @@ function submitForm(event) {
     return;
   }
 
-  let tweek = new XMLHttpRequest();
+  let xhr = new XMLHttpRequest();
   console.log(`http://10.3.0.13:10005/containNameVM?name=${obj.nameVM}`);
-  tweek.open('GET', `http://10.3.0.13:10005/containNameVM?name=${obj.nameVM}`);
-  tweek.send(); //отправляет запрос на сервер
+  xhr.open('GET', `http://10.3.0.13:10005/containNameVM?name=${obj.nameVM}`);
+  xhr.send(); //отправляет запрос на сервер
   create_VM_butt.disabled = true;
-  tweek.onload = function() {
-    if (tweek.status === 200) {
-      if (tweek.response == 'true') {
+  xhr.onload = function() {
+    if (xhr.status === 200) {
+      if (xhr.response == 'true') {
         document.getElementById('error_message').innerHTML = "Смени название.";
         modal_error.show();
         create_VM_butt.disabled = false;
@@ -172,44 +119,44 @@ function submitForm(event) {
         let json = JSON.stringify(obj);
         console.log(obj);
 
-        tweek.open('POST', `http://10.3.0.13:10005/createVM?token=${localStorage.getItem("chef")}`);
-        tweek.send(json);
+        xhr.open('POST', `http://10.3.0.13:10005/createVM?token=${localStorage.getItem("token")}`);
+        xhr.send(json);
         loading.show();
 
-        tweek.onload = function() {
+        xhr.onload = function() {
           create_VM_butt.disabled = false;
-          if (tweek.status === 200) {
-            let myNode = document.getElementsByClassName('kaka2')[0];
+          if (xhr.status === 200) {
+            let myNode = document.getElementsByClassName('template')[0];
             myNode.innerHTML = '';
-            document.getElementById("ded").innerHTML = "Данные для входа";
+            document.getElementById("name_new_system").innerHTML = "Данные для входа";
 
-            let timmi = JSON.parse(tweek.responseText);
+            let data_id_port = JSON.parse(xhr.responseText);
 
-            let bunniOne = document.createElement("div");
-            bunniOne.className = 'dt';
-            let bunni = document.createElement("h2");
-            bunni.innerHTML = "ip:";
-            let bunniTwo = document.createElement("h2");
-            bunniTwo.className = "ta";
-            bunniTwo.innerHTML = timmi.ip;
-            bunniOne.append(bunni);
-            bunniOne.append(bunniTwo);
-            myNode.append(bunniOne);
+            let window_text = document.createElement("div");
+            window_text.className = 'window_text';
+            let ip = document.createElement("h2");
+            ip.innerHTML = "ip:";
+            let ip_h2 = document.createElement("h2");
+            ip_h2.className = "ta";
+            ip_h2.innerHTML = data_id_port.ip;
+            window_text.append(ip);
+            window_text.append(ip_h2);
+            myNode.append(window_text);
 
-            let bunniOne1 = document.createElement("div");
-            bunniOne1.className = 'dt';
-            let bunni1 = document.createElement("h2");
-            bunni1.innerHTML = "Порт:";
-            let bunniTwo1 = document.createElement("h2");
-            bunniTwo1.className = "ta";
-            bunniTwo1.innerHTML = timmi.port;
-            bunniOne1.append(bunni1);
-            myNode.append(bunniOne1);
-            bunniOne1.append(bunniTwo1);
+            let window_text_if_port = document.createElement("div");
+            window_text_if_port.className = 'window_text';
+            let port = document.createElement("h2");
+            port.innerHTML = "Порт:";
+            let port_h2 = document.createElement("h2");
+            port_h2.className = "ta";
+            port_h2.innerHTML = data_id_port.port;
+            window_text_if_port.append(port);
+            myNode.append(window_text_if_port);
+            window_text_if_port.append(port_h2);
           }
 
-          if (tweek.status === 400) {
-            console.log(tweek.response);
+          if (xhr.status === 400) {
+            console.log(xhr.response);
           }
           loading.hide();
         }
@@ -219,5 +166,5 @@ function submitForm(event) {
 }
 
 function creat() {
-  document.location.href = "index4v2.html";
+  document.location.href = "list_vm.html";
 }
