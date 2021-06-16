@@ -8,7 +8,7 @@ function auth() {
   xhr.onload = function(){
     if (xhr.status == 200) {
       localStorage.setItem('token', xhr.responseText);
-      document.location.href = "list_vm.html";
+      document.location.href = "/list_vm";
     }
   }
 }
