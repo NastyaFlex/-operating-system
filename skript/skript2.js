@@ -166,5 +166,5 @@ function submitForm(event) {
 }
 
 function creat() {
-  document.location.href = "list_vm.html";
+  document.location.href = "/list_vm";
 }

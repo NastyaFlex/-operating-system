@@ -14,6 +14,7 @@ function list_vm() {
   xhr.onload = function() {
     if (xhr.status != 200) {
       console.log(xhr.status + " Ошибка");
+      location.reload(); //обновление страницы
     } else {
       let jsontext = xhr.response;
       let arrVMs = JSON.parse(jsontext);
@@ -140,10 +141,6 @@ function switch_car(id) {
   }
 }
 
-function vm() {
-  document.location.href = "new_vm.html";
-}
-
 function klik() {
-  document.location.href = "new_vm.html";
+  document.location.href = "/new_vm";
 }

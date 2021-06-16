@@ -97,7 +97,7 @@ function load_filetree() {
     return;
   }
   xhr = new XMLHttpRequest();
-  xhr.open('GET', `http://10.3.0.13:10005/getFileTreeISO`);
+  xhr.open('GET', `http://10.3.0.13:10005/getFileTreeISO?token=${localStorage.getItem("token")}`);
   xhr.send();
 
   xhr.onload = function() {
