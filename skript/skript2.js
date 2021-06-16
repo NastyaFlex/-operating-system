@@ -98,7 +98,7 @@ function submitForm(event) {
     return;
   }
 
-  let validRegEx = /^[A-z0-9]+$/
+  let validRegEx = /[A-Za-z0-9]/
   if (obj.nameVM.match(validRegEx) == null) {
     empty_in1.show();
     return;
@@ -166,5 +166,5 @@ function submitForm(event) {
 }
 
 function creat() {
-  document.location.href = "/list_vm";
+  document.location.href = "list_vm.html";
 }

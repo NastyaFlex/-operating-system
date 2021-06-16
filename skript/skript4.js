@@ -12,10 +12,8 @@ function list_vm() {
 
   // Этот код сработает после того, как мы получим ответ сервера
   xhr.onload = function() {
-    console.log(xhr.status);
     if (xhr.status != 200) {
       console.log(xhr.status + " Ошибка");
-      document.location.href = "/auth";
     } else {
       let jsontext = xhr.response;
       let arrVMs = JSON.parse(jsontext);
@@ -143,7 +141,9 @@ function switch_car(id) {
 }
 
 function vm() {
-  document.location.href = "/new_vm";
+  document.location.href = "new_vm.html";
 }
 
-document.getElementById("hardDisk").checked = true;
+function klik() {
+  document.location.href = "new_vm.html";
+}
