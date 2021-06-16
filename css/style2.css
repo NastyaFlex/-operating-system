@@ -19,7 +19,7 @@ body, html {
   box-shadow: 10px 10px 0px #0000004b;
   flex-direction: column;
   position: absolute;
-  top: 50%;
+  top: 40%;
   left: 50%;
   margin-right: -50%;
   transform: translate(-50%, -50%)
@@ -161,4 +161,10 @@ h3 {
 }
 ::-webkit-scrollbar {
     display: none;
+}
+.cvet_da{
+background-color: #808080;
+color: #fff;
+position: absolute;
+bottom: 0px;
 }

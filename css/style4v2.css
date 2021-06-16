@@ -11,7 +11,7 @@ body {
 
 #okno {
   position: absolute;
-  top: 50%;
+  top: 42%;
   left: 50%;
   margin-right: -50%;
   transform: translate(-50%, -50%);
@@ -254,4 +254,10 @@ h3{
 .size{
   vertical-align: middle;
   font-size: 20px;
+}
+.cvet{
+background-color: #808080;
+color: #fff;
+position: absolute;
+bottom: 0px;  
 }
