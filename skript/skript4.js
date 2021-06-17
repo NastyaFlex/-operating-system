@@ -144,3 +144,5 @@ function switch_car(id) {
 function klik() {
   document.location.href = "/new_vm";
 }
+
+document.getElementById("hardDisk").checked = true;

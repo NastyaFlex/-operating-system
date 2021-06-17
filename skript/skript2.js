@@ -98,7 +98,7 @@ function submitForm(event) {
     return;
   }
 
-  let validRegEx = /[A-Za-z0-9]/
+  let validRegEx = /^[A-z0-9]+$/
   if (obj.nameVM.match(validRegEx) == null) {
     empty_in1.show();
     return;
